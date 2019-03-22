@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
+from flask_accept import accept
 from subprocess import Popen
 import threading
 import random
@@ -101,15 +102,21 @@ class Execution(threading.Thread):
 
 
 ################################################################################
-@app.route('/playlist', methods=['GET', 'PUT'])
+@app.route('/playlist', methods=['GET'])
 def playlist():
-    if request.method == 'GET':
-        pass
+    if request.accept_mimetypes == 'application/json':
+        return jsonify({'data': play_list})
     else:
-        url = request.args.get('url')
-        play_list.append(url)
-        print(play_list)
-    return jsonify(**{'data': play_list})
+        return render_template('playlist.html')
+
+@app.route('/playlist', methods=['PUT'])
+def playlist():
+    url = request.args.get('url')
+    play_list.append(url)
+    return jsonify({'data': play_list})
+
+
+
 
 
 ################################################################################

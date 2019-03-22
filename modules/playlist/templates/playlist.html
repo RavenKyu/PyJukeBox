@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<body>
+<h1>Playlist</h1>
+{% for item in data %}
+
+<h2><a href="http://localhost:5000/playlist/{{ item.nickname }}">{{
+    item.nickname }}</a></h2>
+
+<table border="1">
+    <tr>
+        <th>Number</th>
+        <th>Artist</th>
+        <th>Title</th>
+        <th>URL</th>
+    </tr>
+    {% for play in item.playlist %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ play.artist }}</td>
+        <td>{{ play.title }}</td>
+        <td>{{ play.url }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endfor %}
+
+
+</body>
+</html>
