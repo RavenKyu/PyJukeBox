@@ -1,3 +1,4 @@
+sqlalchemy
 Flask==1.0.2
 yturl==2.0.2
 flask_sqlalchemy

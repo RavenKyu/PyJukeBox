@@ -1,8 +1,10 @@
-import os
 import unittest
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from database.sqlite3db import User, UserPlayList, UserPlayListIndex, db as DB
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from database.sqlite3db import User, UserPlayList, UserPlayListIndex
+from database import db_session as DB
+
 
 ################################################################################
 class TestUnit (unittest.TestCase):
@@ -12,7 +14,11 @@ class TestUnit (unittest.TestCase):
 
     # ==========================================================================
     def setUp(self):
-        self.db = DB
+        engine = create_engine('sqlite://', convert_unicode=True)
+        db_session = scoped_session(sessionmaker(autocommit=False,
+                                                 autoflush=False,
+                                                 bind=engine))
+        self.db = db_session
         DB.create_all()
 
     # ==========================================================================

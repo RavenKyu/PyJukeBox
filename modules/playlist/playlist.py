@@ -1,47 +1,36 @@
-from flask import render_template, Blueprint, jsonify, request
-from common.utils import request_wants_json, ReturnValue
-playlist = Blueprint(
-    'playlist', #name of module
-    __name__,
-    template_folder='templates' # templates folder
-)
+from flask import jsonify
+from flask_restplus import Namespace, Resource
+from models import UserPlayListIndex, User
 
-@playlist.route('/', methods=['GET','PUT'])
-def index():
-    data = [{'nickname': "Raven", 'playlist': [
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"},
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"}
-    ]},
-    {'nickname': "Raven", 'playlist': [
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"},
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"}
-    ]}]
 
-    if request.method == 'PUT':
-        data = request.form['nm']
+api = Namespace('categories', description='Cats related operations')
 
-    if request.method == 'GET':
-        pass
-        # data = request.args.get('nm')
-    if request_wants_json():
-        return jsonify(ReturnValue(data))
-    return render_template('playlist.html', data=data)
 
-@playlist.route('/<nickname>')
-def user(nickname):
+################################################################################
+@api.route('/<string:nickname>/categories/')
+class UserPlayList(Resource):
+    # ==========================================================================
+    def get(self, nickname):
+        # DB 검색
 
-    pl = [
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"},
-        {"artist": "ESense", "title": "Writer`s Block", "url":
-            "http://hello.com"}
-    ]
-    data = {"nickname": nickname, "playlist": pl}
-    retv = ReturnValue(data)
-    if request_wants_json():
-        return jsonify(retv)
-    return render_template('playlist_user.html', data=data)
+        print(UserPlayListIndex.query.all())
+        # categories = [categories.to_dict() for categories in
+        #               UserPlayListIndex.query.filter_by(user=User.nickname)]
+        #          UserPlayListIndex.query.filter_by(User.name == nickname)]
+        # print(categories)
+        # if not categories:
+        #     api.abort(404)
+        # return jsonify(categories)
+
+
+#
+# ################################################################################
+# @api.route('/<nickname>')
+# @api.param('nickname')
+# class UserDetail(Resource):
+#     # ==========================================================================
+#     def get(self, nickname):
+#         user = User.query.filter(User.name == nickname).first()
+#         if not user:
+#             api.abort(404)
+#         return jsonify(user.to_dict())

@@ -1,1 +1,1 @@
-from .playlist import playlist
+from .playlist import api

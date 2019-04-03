@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<body>
+<h1>Users</h1>
+{% for item in data %}
+
+<table border="1">
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Playlist</th>
+        <th>Musics</th>
+    </tr>
+    {% for user in item.users %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.playlist }}</td>
+        <td>{{ user.music }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endfor %}
+
+
+</body>
+</html>

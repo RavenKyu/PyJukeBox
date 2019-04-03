@@ -1,0 +1,57 @@
+﻿[  {
+    "name": "Raven",
+    "password": 1234,
+    "email": "abc@gmail.com",
+    "playlist":[
+      {
+        "name": "Rap Music",
+        "musics":[
+          {
+            "title": "Write Block - E Sense",
+            "url": "https://www.youtube.com/watch?v=_sGJLT7m8eE",
+            "description": "The Masterpiece of Korean hiphop music ever"
+          },
+          {
+            "title": "Chicken - Jaco Pastrious",
+            "url": "https://www.youtube.com/watch?v=TgntkGc5iBo",
+            "description": "The Masterpiece of Jazz Music"
+          },
+          {
+            "title": "TeenTown - Weather Report",
+            "url": "https://www.youtube.com/watch?v=I63bOi477cA",
+            "description": "R.I.P Jaco"
+          }
+
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Julia",
+    "password": 1234,
+    "email": "def@gmail.com",
+    "playlist":[
+      {
+        "name": "The Next",
+        "musics":[
+          {
+            "title": "도시인 - 넥스트",
+            "url": "https://www.youtube.com/watch?v=8sKIVK4NCzM",
+            "description": "아침엔 우유 한 잔, 점심엔 패스트푸드"
+          },
+          {
+            "title": "일상으로의 초대 - 신해철",
+            "url": "https://www.youtube.com/watch?v=varyDSDi31s",
+            "description": "산책을 하고 차를 마시고"
+          },
+          {
+            "title": "민물장어의 꿈 - 넥스트",
+            "url": "https://www.youtube.com/watch?v=mxGloaTYl8Y",
+            "description": "좁고 좋은 문으로 들어가는 길은, 나를 깎고 잘라서"
+          }
+
+        ]
+      }
+    ]
+  }
+]
